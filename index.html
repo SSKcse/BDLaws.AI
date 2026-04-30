@@ -21,6 +21,8 @@
                             50: '#eff6ff',
                             100: '#dbeafe',
                             500: '#3b82f6',
+                            600: '#2563eb', // Added blue color
+                            700: '#1d4ed8', // Added dark blue color
                             800: '#1e40af',
                             900: '#1e3a8a', // Dark Navy for legal vibe
                             950: '#172554',
@@ -75,7 +77,7 @@
                     <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                     <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
-                Google দিয়ে লগইন করুন
+                Google দিয়ে লগইন করুন
             </button>
             <button onclick="handleLogin('guest')" class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 transition-colors py-3 px-4 rounded-xl font-medium flex items-center justify-center gap-3 shadow-sm">
                 <i data-lucide="user" class="w-5 h-5"></i>
@@ -112,7 +114,7 @@
             <div class="text-xs font-semibold text-brand-100/50 mb-2 mt-4 px-2">আজকে</div>
             <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-50">
                 <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
-                <span class="truncate">বিয়ের আইন ও বয়স</span>
+                <span class="truncate">বিয়ের আইন ও বয়স</span>
             </button>
             <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-100/70">
                 <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
@@ -122,7 +124,7 @@
             <div class="text-xs font-semibold text-brand-100/50 mb-2 mt-6 px-2">গত ৭ দিনে</div>
             <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-100/70">
                 <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
-                <span class="truncate">জমি রেজিস্ট্রেশনের নিয়মাবলী</span>
+                <span class="truncate">জমি রেজিস্ট্রেশনের নিয়মাবলী</span>
             </button>
         </div>
 
@@ -162,7 +164,7 @@
 
         <!-- Chat Container -->
         <div id="chat-container" class="flex-1 overflow-y-auto w-full">
-            <div class="max-w-3xl mx-auto w-full pb-32 pt-8 px-4 flex flex-col gap-6" id="chat-messages">
+            <div class="max-w-3xl mx-auto w-full pb-36 pt-8 px-4 flex flex-col gap-6" id="chat-messages">
                 
                 <!-- Welcome State (Initially Visible) -->
                 <div id="welcome-screen" class="flex flex-col items-center justify-center h-full mt-20 text-center px-4">
@@ -170,12 +172,12 @@
                         <i data-lucide="scale" class="w-10 h-10 text-brand-600"></i>
                     </div>
                     <h1 class="text-3xl font-bold text-brand-950 mb-3">AainKanun AI</h1>
-                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন। সঠিক রেফারেন্সসহ উত্তর পান।</p>
+                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন। সঠিক রেফারেন্সসহ উত্তর পান।</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
-                        <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm">
+                        <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm">
                             <span class="font-medium block text-brand-950 mb-1">বিবাহ আইন</span>
-                            <span class="text-gray-500">আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?</span>
+                            <span class="text-gray-500">আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?</span>
                         </button>
                         <button onclick="insertPrompt('সাইবার ক্রাইম করলে সংবিধানে কী শাস্তির কথা বলা আছে?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm">
                             <span class="font-medium block text-brand-950 mb-1">সাইবার সিকিউরিটি</span>
@@ -188,23 +190,26 @@
         </div>
 
         <!-- Input Area (Fixed Bottom) -->
-        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-white via-white to-transparent pt-6 pb-4 px-4 md:bg-transparent">
+        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-white via-white to-transparent pt-6 pb-8 md:pb-10 px-4 md:bg-transparent">
             <div class="max-w-3xl mx-auto w-full relative">
-                <form id="chat-form" onsubmit="handleChatSubmit(event)" class="relative shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
-                    <textarea 
-                        id="user-input" 
-                        rows="1"
-                        placeholder="আপনার আইনি প্রশ্ন লিখুন..." 
-                        class="w-full py-4 pl-4 pr-14 bg-transparent border-none focus:ring-0 resize-none max-h-32 rounded-2xl no-scrollbar"
-                        oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
-                        onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"
-                    ></textarea>
-                    <button type="submit" id="send-btn" class="absolute right-2 bottom-2 md:bottom-3 p-2 bg-brand-600 text-white rounded-xl hover:bg-brand-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex items-end gap-3 transition-all">
+                    <div class="relative flex-1 shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
+                        <textarea 
+                            id="user-input" 
+                            rows="1"
+                            placeholder="আপনার আইনি প্রশ্ন লিখুন..." 
+                            class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:ring-0 resize-none max-h-32 rounded-2xl no-scrollbar block"
+                            oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
+                            onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"
+                        ></textarea>
+                    </div>
+                    <!-- Send Button outside the message box -->
+                    <button type="submit" id="send-btn" disabled class="shrink-0 h-[56px] w-[56px] bg-brand-600 text-white rounded-2xl hover:bg-brand-700 transition-all duration-200 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed flex items-center justify-center shadow-md disabled:shadow-none">
+                        <i data-lucide="send" class="w-6 h-6 ml-0.5 mt-0.5"></i>
                     </button>
                 </form>
-                <div class="text-center mt-2 text-[10px] text-gray-400">
-                    AainKanun AI ভুল করতে পারে। কোনো আইনি পদক্ষেপ নেওয়ার আগে আইনজীবীর পরামর্শ নিন। Developed By Shuvo Karmaker
+                <div class="text-center mt-3 text-[10px] text-gray-400">
+                    AainKanun AI ভুল করতে পারে। কোনো আইনি পদক্ষেপ নেওয়ার আগে আইনজীবীর পরামর্শ নিন। Developed By Shuvo Karmaker
                 </div>
             </div>
         </div>
@@ -242,6 +247,7 @@
             userInput.style.height = ''; 
             userInput.style.height = userInput.scrollHeight + 'px';
             userInput.focus();
+            sendBtn.disabled = false;
         }
 
         // Start New Chat
@@ -295,14 +301,14 @@
                 let aiResponseText = "";
                 let referenceText = "";
 
-                if(text.includes('বিয়ে') || text.includes('১৭')) {
-                    aiResponseText = "আপনার বয়সের ওপর ভিত্তি করে আইন বিশ্লেষণ:\n\n**বাল্যবিবাহ নিরোধ আইন, ২০১৭** অনুযায়ী বাংলাদেশে বিয়ের আইনগত বৈধ বয়স ছেলেদের ক্ষেত্রে ২১ বছর এবং মেয়েদের ক্ষেত্রে ১৮ বছর। যেহেতু আপনার বয়স ১৭ বছর, তাই আপনার জন্য এই মুহূর্তে বিবাহ বন্ধনে আবদ্ধ হওয়া আইনত দণ্ডনীয় অপরাধ।\n\nআইনের ধারা অনুযায়ী, কোনো অপ্রাপ্তবয়স্ক ব্যক্তি বাল্যবিবাহ করলে তাকে ১ মাসের কারাদণ্ড বা ৫০,০০০ টাকা জরিমানা অথবা উভয় দণ্ডে দণ্ডিত করা হতে পারে।";
+                if(text.includes('বিয়ে') || text.includes('১৭')) {
+                    aiResponseText = "আপনার বয়সের ওপর ভিত্তি করে আইন বিশ্লেষণ:\n\n**বাল্যবিবাহ নিরোধ আইন, ২০১৭** অনুযায়ী বাংলাদেশে বিয়ের আইনগত বৈধ বয়স ছেলেদের ক্ষেত্রে ২১ বছর এবং মেয়েদের ক্ষেত্রে ১৮ বছর। যেহেতু আপনার বয়স ১৭ বছর, তাই আপনার জন্য এই মুহূর্তে বিবাহ বন্ধনে আবদ্ধ হওয়া আইনত দণ্ডনীয় অপরাধ।\n\nআইনের ধারা অনুযায়ী, কোনো অপ্রাপ্তবয়স্ক ব্যক্তি বাল্যবিবাহ করলে তাকে ১ মাসের কারাদণ্ড বা ৫০,০০০ টাকা জরিমানা অথবা উভয় দণ্ডে দণ্ডিত করা হতে পারে।";
                     referenceText = "বাল্যবিবাহ নিরোধ আইন, ২০১৭ (ধারা ৪)";
                 } else if(text.includes('সাইবার') || text.includes('ফেসবুক')) {
-                    aiResponseText = "**সাইবার নিরাপত্তা আইন, ২০২৩** অনুযায়ী কোনো ব্যক্তির সম্মতি ছাড়া তার ছবি বা তথ্য ইন্টারনেটে ছড়ানো আইনত দণ্ডনীয় অপরাধ। এই ধরনের অপরাধের জন্য ডিজিটাল মাধ্যমে মানহানি এবং তথ্য বিকৃতির অভিযোগে মামলা করা যেতে পারে।\n\nঅপরাধ প্রমাণিত হলে ২ বছরের কারাদণ্ড বা ৩ লক্ষ টাকা পর্যন্ত জরিমানা হতে পারে।";
+                    aiResponseText = "**সাইবার নিরাপত্তা আইন, ২০২৩** অনুযায়ী কোনো ব্যক্তির সম্মতি ছাড়া তার ছবি বা তথ্য ইন্টারনেটে ছড়ানো আইনত দণ্ডনীয় অপরাধ। এই ধরনের অপরাধের জন্য ডিজিটাল মাধ্যমে মানহানি এবং তথ্য বিকৃতির অভিযোগে মামলা করা যেতে পারে।\n\nঅপরাধ প্রমাণিত হলে ২ বছরের কারাদণ্ড বা ৩ লক্ষ টাকা পর্যন্ত জরিমানা হতে পারে।";
                     referenceText = "সাইবার নিরাপত্তা আইন, ২০২৩ (ধারা ২৪ ও ২৬)";
                 } else {
-                    aiResponseText = "আমি বাংলাদেশের আইন ও সংবিধান নিয়ে প্রশিক্ষণপ্রাপ্ত এআই। আপনার প্রশ্নটি বিশ্লেষণ করা হচ্ছে। সঠিক তথ্যের জন্য দয়া করে প্রশ্নটি আরেকটু সুনির্দিষ্টভাবে করুন।";
+                    aiResponseText = "আমি বাংলাদেশের আইন ও সংবিধান নিয়ে প্রশিক্ষণপ্রাপ্ত এআই। আপনার প্রশ্নটি বিশ্লেষণ করা হচ্ছে। সঠিক তথ্যের জন্য দয়া করে প্রশ্নটি আরেকটু সুনির্দিষ্টভাবে করুন।";
                     referenceText = "AainKanun AI Database";
                 }
 
