@@ -4,223 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AainKanun AI - Your Digital Legal Assistant</title>
-    
-    <!-- Tailwind CSS for Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Custom Tailwind Configuration for Branding -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb', // Added blue color
-                            700: '#1d4ed8', // Added dark blue color
-                            800: '#1e40af',
-                            900: '#1e3a8a', // Dark Navy for legal vibe
-                            950: '#172554',
-                        }
-                    }
+                    colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' } }
                 }
             }
         }
     </script>
-
     <style>
-        /* Ei style gulo custom scrollbar ar smooth animation er jonno */
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        
-        /* Hide scrollbar for Chrome, Safari and Opera */
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .typing-indicator span {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background-color: #94a3b8;
-            border-radius: 50%;
-            margin-right: 4px;
-            animation: typing 1.4s infinite ease-in-out both;
-        }
+        .typing-indicator span { display: inline-block; width: 6px; height: 6px; background-color: #94a3b8; border-radius: 50%; margin-right: 4px; animation: typing 1.4s infinite ease-in-out both; }
         .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
         .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 h-screen flex overflow-hidden selection:bg-brand-100">
 
     <!-- Login Screen -->
     <div id="login-screen" class="fixed inset-0 bg-brand-950 flex flex-col items-center justify-center z-[100] text-white transition-opacity duration-500">
-        <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-6 shadow-lg backdrop-blur-sm border border-white/20">
-            <i data-lucide="scale" class="w-12 h-12 text-blue-400"></i>
-        </div>
+        <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-6 shadow-lg backdrop-blur-sm border border-white/20"><i data-lucide="scale" class="w-12 h-12 text-blue-400"></i></div>
         <h1 class="text-4xl font-bold mb-2">AainKanun AI</h1>
         <p class="text-brand-100/70 mb-10">আপনার ডিজিটাল লিগ্যাল অ্যাসিস্ট্যান্ট</p>
 
         <div class="space-y-4 w-full max-w-sm px-6">
             <button onclick="handleLogin('google')" class="w-full bg-white text-gray-800 hover:bg-gray-100 transition-colors py-3 px-4 rounded-xl font-medium flex items-center justify-center gap-3 shadow-sm">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Google দিয়ে লগইন করুন
+                <i data-lucide="mail" class="w-5 h-5 text-red-500"></i> Google দিয়ে লগইন করুন
             </button>
             <button onclick="handleLogin('guest')" class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 transition-colors py-3 px-4 rounded-xl font-medium flex items-center justify-center gap-3 shadow-sm">
-                <i data-lucide="user" class="w-5 h-5"></i>
-                গেস্ট হিসেবে শুরু করুন
+                <i data-lucide="user" class="w-5 h-5"></i> গেস্ট হিসেবে শুরু করুন
             </button>
         </div>
-        
-        <div class="mt-12 text-sm text-brand-100/50">
-            DIU AI Project Competition 2026
-        </div>
-
-        <div class="mt-12 text-sm text-brand-100/50">
-            Developed by SHuvo Karmaker
-        </div>
-
-        
+        <div class="mt-12 text-sm text-brand-100/50">DIU AI Project Competition 2026</div>
+        <div class="mt-2 text-sm text-brand-100/50">Developed by Shuvo Karmaker</div>
     </div>
 
     <!-- Mobile Sidebar Overlay -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden" onclick="toggleSidebar()"></div>
 
-    <!-- Sidebar (History & Menu) -->
+    <!-- Sidebar -->
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-brand-950 text-white transform -translate-x-full transition-transform duration-300 md:relative md:translate-x-0 flex flex-col">
-        <!-- New Chat Button -->
-        <div class="p-4">
-            <button onclick="startNewChat()" class="flex items-center gap-3 w-full bg-brand-800 hover:bg-brand-900 transition-colors py-3 px-4 rounded-lg border border-brand-800/50 shadow-sm text-sm font-medium">
-                <i data-lucide="plus" class="w-5 h-5"></i>
-                নতুন চ্যাট শুরু করুন
-            </button>
-        </div>
-
-        <!-- Chat History List -->
+        <div class="p-4"><button onclick="startNewChat()" class="flex items-center gap-3 w-full bg-brand-800 hover:bg-brand-900 py-3 px-4 rounded-lg border border-brand-800/50 text-sm font-medium"><i data-lucide="plus" class="w-5 h-5"></i> নতুন চ্যাট শুরু করুন</button></div>
         <div class="flex-1 overflow-y-auto px-3 py-2 space-y-1 no-scrollbar text-sm">
             <div class="text-xs font-semibold text-brand-100/50 mb-2 mt-4 px-2">আজকে</div>
-            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-50">
-                <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
-                <span class="truncate">বিয়ের আইন ও বয়স</span>
-            </button>
-            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-100/70">
-                <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
-                <span class="truncate">ডিজিটাল নিরাপত্তা আইন</span>
-            </button>
-            
-            <div class="text-xs font-semibold text-brand-100/50 mb-2 mt-6 px-2">গত ৭ দিনে</div>
-            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-100/70">
-                <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
-                <span class="truncate">জমি রেজিস্ট্রেশনের নিয়মাবলী</span>
-            </button>
+            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg text-brand-50 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 shrink-0"></i><span class="truncate">নতুন প্রশ্ন</span></button>
         </div>
-
-        <!-- Bottom Profile & Admin Portal Link -->
         <div class="p-4 border-t border-brand-900">
-            <button class="flex items-center gap-3 w-full hover:bg-brand-900 py-2 px-2 rounded-lg transition-colors text-sm">
+            <button class="flex items-center gap-3 w-full hover:bg-brand-900 py-2 px-2 rounded-lg text-sm">
                 <div id="profile-initial" class="bg-gradient-to-tr from-brand-500 to-blue-400 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">S</div>
-                <div class="text-left flex-1">
-                    <div id="profile-name" class="font-medium">Shuvo Karmaker</div>
-                    <div id="profile-plan" class="text-xs text-brand-100/50">Free Plan</div>
-                </div>
-                <i data-lucide="settings" class="w-4 h-4 text-brand-100/50"></i>
+                <div class="text-left flex-1"><div id="profile-name" class="font-medium">Shuvo Karmaker</div><div id="profile-plan" class="text-xs text-brand-100/50">Free Plan</div></div>
             </button>
-            <button class="flex items-center gap-2 w-full hover:bg-brand-900 py-2 px-2 rounded-lg transition-colors text-sm mt-1 text-brand-100/50">
-                <i data-lucide="database" class="w-4 h-4"></i>
-                অ্যাডমিন পোর্টাল (ডেটা আপলোড)
-            </button>
+            <a href="/adminlogin" class="flex items-center gap-2 w-full hover:bg-brand-900 py-2 px-2 rounded-lg text-sm mt-1 text-brand-100/50">
+                <i data-lucide="database" class="w-4 h-4"></i> অ্যাডমিন পোর্টাল
+            </a>
         </div>
     </aside>
 
     <!-- Main Chat Area -->
     <main class="flex-1 flex flex-col h-screen relative bg-white md:bg-gray-50 w-full">
-        
-        <!-- Mobile Header -->
-        <header class="md:hidden flex items-center justify-between p-3 border-b border-gray-200 bg-white sticky top-0 z-10 shadow-sm">
-            <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-md hover:bg-gray-100 text-gray-600">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-            <div class="font-bold text-lg text-brand-950 flex items-center gap-2">
-                <i data-lucide="scale" class="w-5 h-5 text-brand-500"></i>
-                AainKanun AI
-            </div>
-            <button onclick="startNewChat()" class="p-2 -mr-2 rounded-md hover:bg-gray-100 text-gray-600">
-                <i data-lucide="edit" class="w-5 h-5"></i>
-            </button>
+        <header class="md:hidden flex items-center justify-between p-3 border-b bg-white sticky top-0 z-10 shadow-sm">
+            <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-md hover:bg-gray-100 text-gray-600"><i data-lucide="menu" class="w-6 h-6"></i></button>
+            <div class="font-bold text-lg text-brand-950 flex items-center gap-2"><i data-lucide="scale" class="w-5 h-5 text-brand-500"></i> AainKanun AI</div>
+            <button onclick="startNewChat()" class="p-2 -mr-2 rounded-md hover:bg-gray-100 text-gray-600"><i data-lucide="edit" class="w-5 h-5"></i></button>
         </header>
 
-        <!-- Chat Container -->
         <div id="chat-container" class="flex-1 overflow-y-auto w-full">
             <div class="max-w-3xl mx-auto w-full pb-36 pt-8 px-4 flex flex-col gap-6" id="chat-messages">
-                
-                <!-- Welcome State (Initially Visible) -->
                 <div id="welcome-screen" class="flex flex-col items-center justify-center h-full mt-20 text-center px-4">
-                    <div class="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-brand-100">
-                        <i data-lucide="scale" class="w-10 h-10 text-brand-600"></i>
-                    </div>
+                    <div class="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-brand-100"><i data-lucide="scale" class="w-10 h-10 text-brand-600"></i></div>
                     <h1 class="text-3xl font-bold text-brand-950 mb-3">AainKanun AI</h1>
-                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন। সঠিক রেফারেন্সসহ উত্তর পান।</p>
-                    
+                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন।</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
-                        <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm">
-                            <span class="font-medium block text-brand-950 mb-1">বিবাহ আইন</span>
-                            <span class="text-gray-500">আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?</span>
+                        <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left text-sm shadow-sm">
+                            <span class="font-medium block text-brand-950 mb-1">বিবাহ আইন</span><span class="text-gray-500">আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?</span>
                         </button>
-                        <button onclick="insertPrompt('সাইবার ক্রাইম করলে সংবিধানে কী শাস্তির কথা বলা আছে?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm">
-                            <span class="font-medium block text-brand-950 mb-1">সাইবার সিকিউরিটি</span>
-                            <span class="text-gray-500">সাইবার ক্রাইম করলে কী শাস্তির কথা বলা আছে?</span>
+                        <button onclick="insertPrompt('সাইবার ক্রাইম করলে সংবিধানে কী শাস্তির কথা বলা আছে?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left text-sm shadow-sm">
+                            <span class="font-medium block text-brand-950 mb-1">সাইবার সিকিউরিটি</span><span class="text-gray-500">সাইবার ক্রাইম করলে কী শাস্তি?</span>
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Input Area (Fixed Bottom) -->
         <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-white via-white to-transparent pt-6 pb-8 md:pb-10 px-4 md:bg-transparent">
             <div class="max-w-3xl mx-auto w-full relative">
                 <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex items-end gap-3 transition-all">
-                    <div class="relative flex-1 shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
-                        <textarea 
-                            id="user-input" 
-                            rows="1"
-                            placeholder="আপনার আইনি প্রশ্ন লিখুন..." 
-                            class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:ring-0 resize-none max-h-32 rounded-2xl no-scrollbar block"
-                            oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
-                            onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"
-                        ></textarea>
+                    <div class="relative flex-1 shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500">
+                        <textarea id="user-input" rows="1" placeholder="আপনার আইনি প্রশ্ন লিখুন..." class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:ring-0 resize-none max-h-32 rounded-2xl no-scrollbar block" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"></textarea>
                     </div>
-                    <!-- Send Button outside the message box -->
-                    <button type="submit" id="send-btn" disabled class="shrink-0 h-[56px] w-[56px] bg-brand-600 text-white rounded-2xl hover:bg-brand-700 transition-all duration-200 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed flex items-center justify-center shadow-md disabled:shadow-none">
-                        <i data-lucide="send" class="w-6 h-6 ml-0.5 mt-0.5"></i>
-                    </button>
+                    <button type="submit" id="send-btn" disabled class="shrink-0 h-[56px] w-[56px] bg-brand-600 text-white rounded-2xl hover:bg-brand-700 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed flex items-center justify-center shadow-md"><i data-lucide="send" class="w-6 h-6 ml-0.5 mt-0.5"></i></button>
                 </form>
-                <div class="text-center mt-3 text-[10px] text-gray-400">
-                    AainKanun AI ভুল করতে পারে। কোনো আইনি পদক্ষেপ নেওয়ার আগে আইনজীবীর পরামর্শ নিন। Developed By Shuvo Karmaker
-                </div>
+                <div class="text-center mt-3 text-[10px] text-gray-400">AainKanun AI ভুল করতে পারে। কোনো আইনি পদক্ষেপ নেওয়ার আগে আইনজীবীর পরামর্শ নিন।</div>
             </div>
         </div>
-
     </main>
 
-    <!-- JavaScript For Logic and UI Interaction -->
     <script>
-        // Initialize Icons
         lucide.createIcons();
-
         const chatMessages = document.getElementById('chat-messages');
         const welcomeScreen = document.getElementById('welcome-screen');
         const userInput = document.getElementById('user-input');
@@ -229,189 +115,109 @@
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         const sendBtn = document.getElementById('send-btn');
 
-        // Sidebar Toggle for Mobile
-        function toggleSidebar() {
-            const isClosed = sidebar.classList.contains('-translate-x-full');
-            if (isClosed) {
-                sidebar.classList.remove('-translate-x-full');
-                sidebarOverlay.classList.remove('hidden');
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                sidebarOverlay.classList.add('hidden');
-            }
-        }
+        function toggleSidebar() { sidebar.classList.toggle('-translate-x-full'); sidebarOverlay.classList.toggle('hidden'); }
+        function insertPrompt(text) { userInput.value = text; userInput.style.height = ''; userInput.style.height = userInput.scrollHeight + 'px'; userInput.focus(); sendBtn.disabled = false; }
+        function startNewChat() { welcomeScreen.style.display = 'flex'; chatMessages.querySelectorAll('.chat-bubble').forEach(b => b.remove()); if(window.innerWidth < 768) toggleSidebar(); }
+        function scrollToBottom() { chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' }); }
+        function formatAIResponse(text) { return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-950 font-bold">$1</strong>').replace(/\n/g, '<br/>'); }
 
-        // Suggestion Card Click Handler
-        function insertPrompt(text) {
-            userInput.value = text;
-            userInput.style.height = ''; 
-            userInput.style.height = userInput.scrollHeight + 'px';
-            userInput.focus();
-            sendBtn.disabled = false;
-        }
-
-        // Start New Chat
-        function startNewChat() {
-            welcomeScreen.style.display = 'flex';
-            // Remove all chat bubbles
-            const bubbles = chatMessages.querySelectorAll('.chat-bubble');
-            bubbles.forEach(b => b.remove());
-            if(window.innerWidth < 768) toggleSidebar();
-        }
-
-        // Scroll to bottom
-        function scrollToBottom() {
-            chatContainer.scrollTo({
-                top: chatContainer.scrollHeight,
-                behavior: 'smooth'
-            });
-        }
-
-        // Format Text for AI Response (Simple bolding support)
-        function formatAIResponse(text) {
-            return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-950 font-bold">$1</strong>');
-        }
-
-        // Handle Form Submit
-        function handleChatSubmit(e) {
+        async function handleChatSubmit(e) {
             e.preventDefault();
             const text = userInput.value.trim();
             if (!text) return;
 
-            // Hide welcome screen
             welcomeScreen.style.display = 'none';
-
-            // Add User Message
             addUserMessage(text);
             
-            // Clear Input
-            userInput.value = '';
-            userInput.style.height = 'auto';
-            sendBtn.disabled = true;
+            userInput.value = ''; userInput.style.height = 'auto'; sendBtn.disabled = true;
 
-            // Show Typing Indicator
-            const typingId = showTypingIndicator();
+            const msgId = 'msg-' + Date.now();
+            addEmptyAIMessage(msgId);
             scrollToBottom();
 
-            // Simulate AI Processing (RAG + Gemini API delay)
-            setTimeout(() => {
-                document.getElementById(typingId).remove();
+            try {
+                // Call Vercel Backend API
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: text })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder("utf-8");
+                let fullText = "";
                 
-                // Logic based on the user's question to show a demo RAG response
-                let aiResponseText = "";
-                let referenceText = "";
+                const textContainer = document.getElementById(msgId + '-text');
+                const refContainer = document.getElementById(msgId + '-ref');
 
-                if(text.includes('বিয়ে') || text.includes('১৭')) {
-                    aiResponseText = "আপনার বয়সের ওপর ভিত্তি করে আইন বিশ্লেষণ:\n\n**বাল্যবিবাহ নিরোধ আইন, ২০১৭** অনুযায়ী বাংলাদেশে বিয়ের আইনগত বৈধ বয়স ছেলেদের ক্ষেত্রে ২১ বছর এবং মেয়েদের ক্ষেত্রে ১৮ বছর। যেহেতু আপনার বয়স ১৭ বছর, তাই আপনার জন্য এই মুহূর্তে বিবাহ বন্ধনে আবদ্ধ হওয়া আইনত দণ্ডনীয় অপরাধ।\n\nআইনের ধারা অনুযায়ী, কোনো অপ্রাপ্তবয়স্ক ব্যক্তি বাল্যবিবাহ করলে তাকে ১ মাসের কারাদণ্ড বা ৫০,০০০ টাকা জরিমানা অথবা উভয় দণ্ডে দণ্ডিত করা হতে পারে।";
-                    referenceText = "বাল্যবিবাহ নিরোধ আইন, ২০১৭ (ধারা ৪)";
-                } else if(text.includes('সাইবার') || text.includes('ফেসবুক')) {
-                    aiResponseText = "**সাইবার নিরাপত্তা আইন, ২০২৩** অনুযায়ী কোনো ব্যক্তির সম্মতি ছাড়া তার ছবি বা তথ্য ইন্টারনেটে ছড়ানো আইনত দণ্ডনীয় অপরাধ। এই ধরনের অপরাধের জন্য ডিজিটাল মাধ্যমে মানহানি এবং তথ্য বিকৃতির অভিযোগে মামলা করা যেতে পারে।\n\nঅপরাধ প্রমাণিত হলে ২ বছরের কারাদণ্ড বা ৩ লক্ষ টাকা পর্যন্ত জরিমানা হতে পারে।";
-                    referenceText = "সাইবার নিরাপত্তা আইন, ২০২৩ (ধারা ২৪ ও ২৬)";
-                } else {
-                    aiResponseText = "আমি বাংলাদেশের আইন ও সংবিধান নিয়ে প্রশিক্ষণপ্রাপ্ত এআই। আপনার প্রশ্নটি বিশ্লেষণ করা হচ্ছে। সঠিক তথ্যের জন্য দয়া করে প্রশ্নটি আরেকটু সুনির্দিষ্টভাবে করুন।";
-                    referenceText = "AainKanun AI Database";
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value, { stream: true });
+                    const lines = chunk.split('\n');
+                    
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const dataStr = line.replace('data: ', '');
+                            if (dataStr === '[DONE]') {
+                                sendBtn.disabled = false;
+                                break;
+                            }
+                            try {
+                                const data = JSON.parse(dataStr);
+                                if (data.type === 'reference') {
+                                    refContainer.innerText = data.text;
+                                } else if (data.type === 'chunk') {
+                                    fullText += data.text;
+                                    textContainer.innerHTML = formatAIResponse(fullText);
+                                    scrollToBottom();
+                                }
+                            } catch(e) { }
+                        }
+                    }
                 }
-
-                addAIMessage(aiResponseText, referenceText);
+            } catch (error) {
+                document.getElementById(msgId + '-text').innerText = "দুঃখিত, সংযোগে সমস্যা হয়েছে।";
                 sendBtn.disabled = false;
-            }, 1800); // 1.8 seconds delay simulating Vercel Serverless Function
+            }
         }
 
-        // Add User Message to UI
         function addUserMessage(text) {
-            const html = `
-                <div class="chat-bubble flex justify-end w-full animate-fade-in mb-4">
-                    <div class="bg-gray-100 text-gray-800 px-5 py-3 rounded-2xl rounded-tr-sm max-w-[85%] md:max-w-[75%] shadow-sm">
-                        ${text}
-                    </div>
-                </div>
-            `;
+            const html = `<div class="chat-bubble flex justify-end w-full animate-fade-in mb-4"><div class="bg-gray-100 text-gray-800 px-5 py-3 rounded-2xl rounded-tr-sm max-w-[85%] md:max-w-[75%] shadow-sm">${text}</div></div>`;
             chatMessages.insertAdjacentHTML('beforeend', html);
         }
 
-        // Show Typing Indicator
-        function showTypingIndicator() {
-            const id = 'typing-' + Date.now();
-            const html = `
-                <div id="${id}" class="chat-bubble flex gap-4 w-full animate-fade-in mb-2">
-                    <div class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100">
-                        <i data-lucide="scale" class="w-4 h-4 text-brand-600"></i>
-                    </div>
-                    <div class="flex-1 pt-1">
-                        <div class="typing-indicator flex items-center mt-2">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            chatMessages.insertAdjacentHTML('beforeend', html);
-            lucide.createIcons();
-            return id;
-        }
-
-        // Add AI Message to UI with Reference Card
-        function addAIMessage(text, reference) {
-            const formattedText = formatAIResponse(text.replace(/\n/g, '<br/>'));
+        function addEmptyAIMessage(id) {
             const html = `
                 <div class="chat-bubble flex gap-3 md:gap-4 w-full animate-fade-in mb-6">
-                    <div class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100 mt-1">
-                        <i data-lucide="scale" class="w-4 h-4 text-brand-600"></i>
-                    </div>
+                    <div class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100 mt-1"><i data-lucide="scale" class="w-4 h-4 text-brand-600"></i></div>
                     <div class="flex-1 space-y-3">
-                        <div class="text-gray-800 leading-relaxed pt-1">
-                            ${formattedText}
+                        <div id="${id}-text" class="text-gray-800 leading-relaxed pt-1 min-h-[24px]">
+                            <div class="typing-indicator flex items-center mt-2"><span></span><span></span><span></span></div>
                         </div>
-                        
-                        <!-- Reference Card (The RAG Feature Demo) -->
                         <div class="mt-3 bg-brand-50 border-l-4 border-brand-600 p-3 rounded-r-lg inline-block w-full md:w-auto pr-8">
-                            <div class="flex items-center gap-2 text-xs font-semibold text-brand-900 uppercase tracking-wider mb-1">
-                                <i data-lucide="bookmark" class="w-3 h-3"></i> লিগ্যাল রেফারেন্স
-                            </div>
-                            <div class="text-sm font-medium text-gray-700">
-                                ${reference}
-                            </div>
-                        </div>
-
-                        <!-- Action Icons -->
-                        <div class="flex items-center gap-2 mt-2 pt-2">
-                            <button class="p-1 text-gray-400 hover:text-gray-600 transition-colors" title="Copy"><i data-lucide="copy" class="w-4 h-4"></i></button>
-                            <button class="p-1 text-gray-400 hover:text-green-600 transition-colors" title="Good Response"><i data-lucide="thumbs-up" class="w-4 h-4"></i></button>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-brand-900 uppercase tracking-wider mb-1"><i data-lucide="bookmark" class="w-3 h-3"></i> লিগ্যাল রেফারেন্স</div>
+                            <div id="${id}-ref" class="text-sm font-medium text-gray-700">খোঁজা হচ্ছে...</div>
                         </div>
                     </div>
-                </div>
-            `;
+                </div>`;
             chatMessages.insertAdjacentHTML('beforeend', html);
             lucide.createIcons();
-            scrollToBottom();
         }
 
-        // Enable/Disable Send button based on input
-        userInput.addEventListener('input', function() {
-            sendBtn.disabled = this.value.trim().length === 0;
-        });
+        userInput.addEventListener('input', function() { sendBtn.disabled = this.value.trim().length === 0; });
         
-        // Handle Login Screen Logic
         function handleLogin(method) {
             const loginScreen = document.getElementById('login-screen');
-            
-            // Update profile based on login method
             if(method === 'guest') {
-                document.getElementById('profile-initial').innerText = 'G';
-                document.getElementById('profile-name').innerText = 'Guest User';
-                document.getElementById('profile-plan').innerText = 'Limited Access';
+                document.getElementById('profile-initial').innerText = 'G'; document.getElementById('profile-name').innerText = 'Guest'; document.getElementById('profile-plan').innerText = 'Limited';
             } else {
-                document.getElementById('profile-initial').innerText = 'S';
-                document.getElementById('profile-name').innerText = 'Shuvo Karmaker';
-                document.getElementById('profile-plan').innerText = 'Free Plan';
+                document.getElementById('profile-initial').innerText = 'S'; document.getElementById('profile-name').innerText = 'Shuvo'; document.getElementById('profile-plan').innerText = 'Free Plan';
             }
-
-            // Smooth fade out animation for login screen
             loginScreen.style.opacity = '0';
-            setTimeout(() => {
-                loginScreen.style.display = 'none';
-            }, 500); // Wait for transition to complete
+            setTimeout(() => { loginScreen.style.display = 'none'; }, 500);
         }
-
     </script>
 </body>
 </html>

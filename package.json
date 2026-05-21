@@ -1,0 +1,14 @@
+{
+"name": "aainkanun-ai",
+"version": "1.0.0",
+"description": "RAG-based Legal Assistant for Bangladesh",
+"scripts": {
+"start": "echo 'Run locally using Vercel CLI'"
+},
+"dependencies": {
+"@google/generative-ai": "^0.2.1",
+"@supabase/supabase-js": "^2.39.3",
+"formidable": "^3.5.1",
+"pdf-parse": "^1.1.1"
+}
+}
