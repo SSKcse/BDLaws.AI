@@ -108,7 +108,7 @@
                         <i data-lucide="scale" class="w-10 h-10 text-brand-600"></i>
                     </div>
                     <h1 class="text-3xl font-bold text-brand-950 mb-3">AainKanun AI</h1>
-                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন। সঠিক রেফারেন্সসহ উত্তর পান।</p>
+                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন। বাংলা বা বাংলিশেও জিজ্ঞেস করতে পারেন।</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
                         <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm bg-white">
@@ -137,7 +137,7 @@
             <div class="max-w-3xl mx-auto w-full relative">
                 <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex items-end gap-3 transition-all">
                     <div class="relative flex-1 shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
-                        <textarea id="user-input" rows="1" placeholder="আপনার আইনি প্রশ্ন লিখুন..." class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:outline-none resize-none max-h-32 rounded-2xl no-scrollbar block" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"></textarea>
+                        <textarea id="user-input" rows="1" placeholder="আপনার আইনি প্রশ্ন লিখুন (যেমন: ami student...)" class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:outline-none resize-none max-h-32 rounded-2xl no-scrollbar block" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"></textarea>
                     </div>
                     <button type="submit" id="send-btn" disabled class="shrink-0 h-[56px] w-[56px] bg-brand-600 text-white rounded-2xl hover:bg-brand-700 transition-all duration-200 disabled:bg-gray-200 disabled:cursor-not-allowed flex items-center justify-center shadow-md">
                         <i data-lucide="send" class="w-6 h-6 ml-0.5 mt-0.5"></i>
@@ -211,23 +211,33 @@
             let aiResponseText = "";
             let referenceText = "";
 
-            // Smart Keyword Matching Logic
-            if (lowerQuery.includes('বিয়ে') || lowerQuery.includes('বিবাহ') || lowerQuery.includes('১৭') || lowerQuery.includes('বয়স')) {
+            // --- SMART KEYWORD MATCHING (Bangla & Banglish) ---
+            
+            // 1. CYBER CRIME / FACEBOOK (Bangla & Banglish)
+            if (lowerQuery.includes('সাইবার') || lowerQuery.includes('অনলাইন') || lowerQuery.includes('মানহানি') || lowerQuery.includes('ছবি') || 
+                lowerQuery.includes('facebook') || lowerQuery.includes('post') || lowerQuery.includes('fecebook')) {
+                aiResponseText = "ছাত্র হিসেবে সোশ্যাল মিডিয়ায় (যেমন: ফেসবুক) পোস্ট করার ক্ষেত্রে সতর্ক থাকা অত্যন্ত প্রয়োজন। **সাইবার নিরাপত্তা আইন, ২০২৩** অনুযায়ী নিম্নলিখিত কাজগুলো অপরাধ বলে গণ্য হতে পারে:\n\n১. কারও ধর্মীয় অনুভূতিতে আঘাত হানে এমন কিছু পোস্ট বা শেয়ার করা।\n২. কোনো ব্যক্তির ছবি বা ভিডিও অনুমতি ছাড়া বা এডিট করে মানহানিকর অবস্থায় ছড়ানো।\n৩. রাষ্ট্রের ভাবমূর্তি ক্ষুণ্ণ হয় এমন কোনো ভুয়া বা মিথ্যা তথ্য (গুজব) প্রচার করা।\n\nএসব অপরাধ প্রমাণিত হলে ডিজিটাল মাধ্যমে মানহানির অভিযোগে ৩ থেকে ৭ বছর পর্যন্ত কারাদণ্ড বা বড় অঙ্কের জরিমানা হতে পারে। তাই যাচাই না করে কোনো কিছু শেয়ার করা থেকে বিরত থাকুন।";
+                referenceText = "সাইবার নিরাপত্তা আইন, ২০২৩ (ধারা ২১, ২৮ ও ২৯)";
+            }
+            // 2. MARRIAGE (Bangla & Banglish)
+            else if (lowerQuery.includes('বিয়ে') || lowerQuery.includes('বিবাহ') || lowerQuery.includes('১৭') || lowerQuery.includes('বয়স') ||
+                     lowerQuery.includes('boyos') || lowerQuery.includes('biye')) {
                 aiResponseText = "আপনার বয়সের ওপর ভিত্তি করে আইন বিশ্লেষণ:\n\n**বাল্যবিবাহ নিরোধ আইন, ২০১৭** অনুযায়ী বাংলাদেশে বিয়ের আইনগত বৈধ বয়স ছেলেদের ক্ষেত্রে ২১ বছর এবং মেয়েদের ক্ষেত্রে ১৮ বছর। যেহেতু আপনার বয়স ১৭ বছর, তাই আপনার জন্য এই মুহূর্তে বিবাহ বন্ধনে আবদ্ধ হওয়া আইনত দণ্ডনীয় অপরাধ।\n\nআইনের ধারা অনুযায়ী, কোনো অপ্রাপ্তবয়স্ক ব্যক্তি বাল্যবিবাহ করলে তাকে ১ মাসের কারাদণ্ড বা ৫০,০০০ টাকা জরিমানা অথবা উভয় দণ্ডে দণ্ডিত করা হতে পারে।";
                 referenceText = "বাল্যবিবাহ নিরোধ আইন, ২০১৭ (ধারা ৪)";
             } 
-            else if (lowerQuery.includes('সাইবার') || lowerQuery.includes('ফেসবুক') || lowerQuery.includes('অনলাইন') || lowerQuery.includes('মানহানি') || lowerQuery.includes('ছবি')) {
-                aiResponseText = "**সাইবার নিরাপত্তা আইন, ২০২৩** অনুযায়ী কোনো ব্যক্তির সম্মতি ছাড়া তার ছবি বা তথ্য ইন্টারনেটে ছড়ানো বা মানহানিকর কিছু প্রকাশ করা একটি গুরুতর অপরাধ। \n\nএই ধরনের অপরাধের জন্য আপনি নিকটস্থ থানার সাইবার ক্রাইম ইউনিটে জিডি করতে পারেন অথবা বিটিআরসি (BTRC) বা পুলিশের ৯৯৯ এ কল করে অভিযোগ জানাতে পারেন। অপরাধ প্রমাণিত হলে ২ বছরের কারাদণ্ড বা ৩ লক্ষ টাকা পর্যন্ত জরিমানা হতে পারে।";
-                referenceText = "সাইবার নিরাপত্তা আইন, ২০২৩ (ধারা ২৪ ও ২৯)";
-            }
-            else if (lowerQuery.includes('ভোক্তা') || lowerQuery.includes('ভেজাল') || lowerQuery.includes('দোকান') || lowerQuery.includes('নকল')) {
+            // 3. CONSUMER RIGHTS (Bangla & Banglish)
+            else if (lowerQuery.includes('ভোক্তা') || lowerQuery.includes('ভেজাল') || lowerQuery.includes('দোকান') || lowerQuery.includes('নকল') ||
+                     lowerQuery.includes('nokol') || lowerQuery.includes('dokan') || lowerQuery.includes('jinish')) {
                 aiResponseText = "**ভোক্তা অধিকার সংরক্ষণ আইন, ২০০৯** অনুযায়ী কোনো বিক্রেতা যদি নকল বা ভেজাল পণ্য সরবরাহ করে, তবে আপনি জাতীয় ভোক্তা অধিকার সংরক্ষণ অধিদপ্তরে অভিযোগ করতে পারেন।\n\nআপনি চাইলে তাদের হটলাইন (১৬১২১) নাম্বারে কল করে প্রমাণসহ অভিযোগ জানাতে পারেন। অভিযোগ প্রমাণিত হলে বিক্রেতার জেল বা জরিমানা হতে পারে এবং জরিমানার ২৫% অর্থ অভিযোগকারীকে প্রদান করা হয়।";
                 referenceText = "ভোক্তা অধিকার সংরক্ষণ আইন, ২০০৯ (ধারা ৪১ ও ৪৪)";
             }
-            else if (lowerQuery.includes('জমি') || lowerQuery.includes('নামজারি') || lowerQuery.includes('মিউটেশন') || lowerQuery.includes('দলিল')) {
-                aiResponseText = "জমি কেনার পর **নামজারি (Mutation)** করা অত্যন্ত জরুরি। নামজারি হলো সরকারি রেকর্ড রুমে পূর্বের মালিকের নাম বাদ দিয়ে নতুন মালিক হিসেবে আপনার নাম অন্তর্ভুক্ত করা।\n\nনামজারি না করলে জমির ওপর আপনার আইনগত মালিকানা সরকারিভাবে স্বীকৃত হবে না এবং পরবর্তীতে জমি বিক্রি বা ব্যাংক লোন নেওয়ার ক্ষেত্রে সমস্যার সম্মুখীন হতে হবে। বর্তমানে e-namjari ওয়েবসাইটের মাধ্যমে অনলাইনে আবেদন করা যায়।";
+            // 4. LAND LAW (Bangla & Banglish)
+            else if (lowerQuery.includes('জমি') || lowerQuery.includes('নামজারি') || lowerQuery.includes('মিউটেশন') || lowerQuery.includes('দলিল') ||
+                     lowerQuery.includes('jomi') || lowerQuery.includes('namjari')) {
+                aiResponseText = "জমি কেনার পর **নামজারি (Mutation)** করা অত্যন্ত জরুরি। নামজারি হলো সরকারি রেকর্ড রুমে পূর্বের মালিকের নাম বাদ দিয়ে নতুন মালিক হিসেবে আপনার নাম অন্তর্ভুক্ত করা।\n\nনামজারি না করলে জমির ওপর আপনার আইনগত মালিকানা সরকারিভাবে স্বীকৃত হবে পণ্ডিত হবে এবং পরবর্তীতে জমি বিক্রি বা ব্যাংক লোন নেওয়ার ক্ষেত্রে সমস্যার সম্মুখীন হতে হবে। বর্তমানে e-namjari ওয়েবসাইটের মাধ্যমে অনলাইনে আবেদন করা যায়।";
                 referenceText = "রাষ্ট্রীয় অধিগ্রহণ ও প্রজাস্বত্ব আইন, ১৯৫০ (ধারা ১৪৩)";
             }
+            // 5. DEFAULT FALLBACK
             else {
                 aiResponseText = "আপনার প্রশ্নটি অত্যন্ত গুরুত্বপূর্ণ। আমাদের সিস্টেমে এই মুহূর্তে এই নির্দিষ্ট আইনি বিষয়টি প্রসেস করা হচ্ছে। \n\nএটি একটি জটিল লিগ্যাল ইস্যু হতে পারে। **AainKanun AI** সাধারণ ধারণার জন্য তৈরি, তবে কোনো চূড়ান্ত পদক্ষেপ নেওয়ার আগে অনুগ্রহ করে একজন পেশাদার আইনজীবীর (Lawyer) সাথে পরামর্শ করুন।";
                 referenceText = "General Advisory Warning";
