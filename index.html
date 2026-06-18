@@ -10,7 +10,12 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554' } }
+                    colors: {
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb',
+                            700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554',
+                        }
+                    }
                 }
             }
         }
@@ -19,30 +24,37 @@
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .typing-indicator span { display: inline-block; width: 6px; height: 6px; background-color: #94a3b8; border-radius: 50%; margin-right: 4px; animation: typing 1.4s infinite ease-in-out both; }
+        .typing-indicator span {
+            display: inline-block; width: 6px; height: 6px; background-color: #94a3b8;
+            border-radius: 50%; margin-right: 4px; animation: typing 1.4s infinite ease-in-out both;
+        }
         .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
         .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 h-screen flex overflow-hidden selection:bg-brand-100">
 
     <!-- Login Screen -->
     <div id="login-screen" class="fixed inset-0 bg-brand-950 flex flex-col items-center justify-center z-[100] text-white transition-opacity duration-500">
-        <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-6 shadow-lg backdrop-blur-sm border border-white/20"><i data-lucide="scale" class="w-12 h-12 text-blue-400"></i></div>
+        <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-6 shadow-lg backdrop-blur-sm border border-white/20">
+            <i data-lucide="scale" class="w-12 h-12 text-blue-400"></i>
+        </div>
         <h1 class="text-4xl font-bold mb-2">AainKanun AI</h1>
         <p class="text-brand-100/70 mb-10">আপনার ডিজিটাল লিগ্যাল অ্যাসিস্ট্যান্ট</p>
 
         <div class="space-y-4 w-full max-w-sm px-6">
             <button onclick="handleLogin('google')" class="w-full bg-white text-gray-800 hover:bg-gray-100 transition-colors py-3 px-4 rounded-xl font-medium flex items-center justify-center gap-3 shadow-sm">
-                <i data-lucide="mail" class="w-5 h-5 text-red-500"></i> Google দিয়ে লগইন করুন
+                Google দিয়ে লগইন করুন
             </button>
             <button onclick="handleLogin('guest')" class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 transition-colors py-3 px-4 rounded-xl font-medium flex items-center justify-center gap-3 shadow-sm">
-                <i data-lucide="user" class="w-5 h-5"></i> গেস্ট হিসেবে শুরু করুন
+                গেস্ট হিসেবে শুরু করুন
             </button>
         </div>
-        <div class="mt-12 text-sm text-brand-100/50">DIU AI Project Competition 2026</div>
-        <div class="mt-2 text-sm text-brand-100/50">Developed by Shuvo Karmaker</div>
+        <div class="mt-12 text-sm text-brand-100/50">DIU AI Project Competition 2026<br>Developed by Shuvo Karmaker</div>
     </div>
 
     <!-- Mobile Sidebar Overlay -->
@@ -50,57 +62,88 @@
 
     <!-- Sidebar -->
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-brand-950 text-white transform -translate-x-full transition-transform duration-300 md:relative md:translate-x-0 flex flex-col">
-        <div class="p-4"><button onclick="startNewChat()" class="flex items-center gap-3 w-full bg-brand-800 hover:bg-brand-900 py-3 px-4 rounded-lg border border-brand-800/50 text-sm font-medium"><i data-lucide="plus" class="w-5 h-5"></i> নতুন চ্যাট শুরু করুন</button></div>
+        <div class="p-4">
+            <button onclick="startNewChat()" class="flex items-center gap-3 w-full bg-brand-800 hover:bg-brand-900 transition-colors py-3 px-4 rounded-lg border border-brand-800/50 shadow-sm text-sm font-medium">
+                <i data-lucide="plus" class="w-5 h-5"></i> নতুন চ্যাট শুরু করুন
+            </button>
+        </div>
         <div class="flex-1 overflow-y-auto px-3 py-2 space-y-1 no-scrollbar text-sm">
             <div class="text-xs font-semibold text-brand-100/50 mb-2 mt-4 px-2">আজকে</div>
-            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg text-brand-50 flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 shrink-0"></i><span class="truncate">নতুন প্রশ্ন</span></button>
+            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-50">
+                <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i> <span class="truncate">বিয়ের আইন ও বয়স</span>
+            </button>
+            <button class="w-full text-left truncate py-2 px-3 hover:bg-brand-900 rounded-lg transition-colors flex items-center gap-2 text-brand-100/70">
+                <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i> <span class="truncate">ডিজিটাল নিরাপত্তা আইন</span>
+            </button>
         </div>
         <div class="p-4 border-t border-brand-900">
-            <button class="flex items-center gap-3 w-full hover:bg-brand-900 py-2 px-2 rounded-lg text-sm">
+            <button class="flex items-center gap-3 w-full hover:bg-brand-900 py-2 px-2 rounded-lg transition-colors text-sm">
                 <div id="profile-initial" class="bg-gradient-to-tr from-brand-500 to-blue-400 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold">S</div>
-                <div class="text-left flex-1"><div id="profile-name" class="font-medium">Shuvo Karmaker</div><div id="profile-plan" class="text-xs text-brand-100/50">Free Plan</div></div>
+                <div class="text-left flex-1">
+                    <div id="profile-name" class="font-medium">Shuvo Karmaker</div>
+                    <div id="profile-plan" class="text-xs text-brand-100/50">Free Plan</div>
+                </div>
             </button>
-            <a href="/adminlogin" class="flex items-center gap-2 w-full hover:bg-brand-900 py-2 px-2 rounded-lg text-sm mt-1 text-brand-100/50">
-                <i data-lucide="database" class="w-4 h-4"></i> অ্যাডমিন পোর্টাল
-            </a>
+            <button class="flex items-center gap-2 w-full hover:bg-brand-900 py-2 px-2 rounded-lg transition-colors text-sm mt-1 text-brand-100/50">
+                <i data-lucide="database" class="w-4 h-4"></i> অ্যাডমিন পোর্টাল (RAG DB)
+            </button>
         </div>
     </aside>
 
     <!-- Main Chat Area -->
     <main class="flex-1 flex flex-col h-screen relative bg-white md:bg-gray-50 w-full">
-        <header class="md:hidden flex items-center justify-between p-3 border-b bg-white sticky top-0 z-10 shadow-sm">
+        <!-- Mobile Header -->
+        <header class="md:hidden flex items-center justify-between p-3 border-b border-gray-200 bg-white sticky top-0 z-10 shadow-sm">
             <button onclick="toggleSidebar()" class="p-2 -ml-2 rounded-md hover:bg-gray-100 text-gray-600"><i data-lucide="menu" class="w-6 h-6"></i></button>
             <div class="font-bold text-lg text-brand-950 flex items-center gap-2"><i data-lucide="scale" class="w-5 h-5 text-brand-500"></i> AainKanun AI</div>
             <button onclick="startNewChat()" class="p-2 -mr-2 rounded-md hover:bg-gray-100 text-gray-600"><i data-lucide="edit" class="w-5 h-5"></i></button>
         </header>
 
+        <!-- Chat Container -->
         <div id="chat-container" class="flex-1 overflow-y-auto w-full">
             <div class="max-w-3xl mx-auto w-full pb-36 pt-8 px-4 flex flex-col gap-6" id="chat-messages">
+                <!-- Welcome State -->
                 <div id="welcome-screen" class="flex flex-col items-center justify-center h-full mt-20 text-center px-4">
-                    <div class="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-brand-100"><i data-lucide="scale" class="w-10 h-10 text-brand-600"></i></div>
+                    <div class="w-20 h-20 bg-brand-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-brand-100">
+                        <i data-lucide="scale" class="w-10 h-10 text-brand-600"></i>
+                    </div>
                     <h1 class="text-3xl font-bold text-brand-950 mb-3">AainKanun AI</h1>
-                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন।</p>
+                    <p class="text-gray-500 mb-8 max-w-md">বাংলাদেশের আইন ও সংবিধান নিয়ে আপনার যেকোনো প্রশ্ন করুন। সঠিক রেফারেন্সসহ উত্তর পান।</p>
+                    
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
-                        <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left text-sm shadow-sm">
-                            <span class="font-medium block text-brand-950 mb-1">বিবাহ আইন</span><span class="text-gray-500">আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?</span>
+                        <button onclick="insertPrompt('আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm bg-white">
+                            <span class="font-medium block text-brand-950 mb-1">বিবাহ আইন</span>
+                            <span class="text-gray-500">আমার বয়স ১৭ বছর। আমি কি বিয়ে করতে পারব?</span>
                         </button>
-                        <button onclick="insertPrompt('সাইবার ক্রাইম করলে সংবিধানে কী শাস্তির কথা বলা আছে?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left text-sm shadow-sm">
-                            <span class="font-medium block text-brand-950 mb-1">সাইবার সিকিউরিটি</span><span class="text-gray-500">সাইবার ক্রাইম করলে কী শাস্তি?</span>
+                        <button onclick="insertPrompt('কেউ অনলাইনে মানহানিকর ছবি ছড়ালে কী করব?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm bg-white">
+                            <span class="font-medium block text-brand-950 mb-1">সাইবার সিকিউরিটি</span>
+                            <span class="text-gray-500">কেউ অনলাইনে মানহানিকর ছবি ছড়ালে কী করব?</span>
+                        </button>
+                        <button onclick="insertPrompt('দোকানে নকল জিনিস দিলে ভোক্তাদের অধিকার কী?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm bg-white">
+                            <span class="font-medium block text-brand-950 mb-1">ভোক্তা অধিকার</span>
+                            <span class="text-gray-500">দোকানে নকল জিনিস দিলে ভোক্তাদের অধিকার কী?</span>
+                        </button>
+                        <button onclick="insertPrompt('জমি কেনার পর নামজারি বা মিউটেশন কেন করতে হয়?')" class="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-all text-sm shadow-sm bg-white">
+                            <span class="font-medium block text-brand-950 mb-1">ভূমি আইন</span>
+                            <span class="text-gray-500">জমি কেনার পর নামজারি কেন করতে হয়?</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Input Area -->
         <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-white via-white to-transparent pt-6 pb-8 md:pb-10 px-4 md:bg-transparent">
             <div class="max-w-3xl mx-auto w-full relative">
                 <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex items-end gap-3 transition-all">
-                    <div class="relative flex-1 shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500">
-                        <textarea id="user-input" rows="1" placeholder="আপনার আইনি প্রশ্ন লিখুন..." class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:ring-0 resize-none max-h-32 rounded-2xl no-scrollbar block" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"></textarea>
+                    <div class="relative flex-1 shadow-lg md:shadow-md rounded-2xl bg-white border border-gray-300 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all">
+                        <textarea id="user-input" rows="1" placeholder="আপনার আইনি প্রশ্ন লিখুন..." class="w-full py-4 px-4 md:px-5 bg-transparent border-none focus:outline-none resize-none max-h-32 rounded-2xl no-scrollbar block" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" onkeydown="if(event.keyCode === 13 && !event.shiftKey) { event.preventDefault(); handleChatSubmit(event); }"></textarea>
                     </div>
-                    <button type="submit" id="send-btn" disabled class="shrink-0 h-[56px] w-[56px] bg-brand-600 text-white rounded-2xl hover:bg-brand-700 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed flex items-center justify-center shadow-md"><i data-lucide="send" class="w-6 h-6 ml-0.5 mt-0.5"></i></button>
+                    <button type="submit" id="send-btn" disabled class="shrink-0 h-[56px] w-[56px] bg-brand-600 text-white rounded-2xl hover:bg-brand-700 transition-all duration-200 disabled:bg-gray-200 disabled:cursor-not-allowed flex items-center justify-center shadow-md">
+                        <i data-lucide="send" class="w-6 h-6 ml-0.5 mt-0.5"></i>
+                    </button>
                 </form>
-                <div class="text-center mt-3 text-[10px] text-gray-400">AainKanun AI ভুল করতে পারে। কোনো আইনি পদক্ষেপ নেওয়ার আগে আইনজীবীর পরামর্শ নিন।</div>
+                <div class="text-center mt-3 text-[10px] text-gray-400">AainKanun AI ভুল করতে পারে। কোনো আইনি পদক্ষেপ নেওয়ার আগে আইনজীবীর পরামর্শ নিন। Developed By Shuvo Karmaker</div>
             </div>
         </div>
     </main>
@@ -115,13 +158,33 @@
         const sidebarOverlay = document.getElementById('sidebar-overlay');
         const sendBtn = document.getElementById('send-btn');
 
-        function toggleSidebar() { sidebar.classList.toggle('-translate-x-full'); sidebarOverlay.classList.toggle('hidden'); }
-        function insertPrompt(text) { userInput.value = text; userInput.style.height = ''; userInput.style.height = userInput.scrollHeight + 'px'; userInput.focus(); sendBtn.disabled = false; }
-        function startNewChat() { welcomeScreen.style.display = 'flex'; chatMessages.querySelectorAll('.chat-bubble').forEach(b => b.remove()); if(window.innerWidth < 768) toggleSidebar(); }
-        function scrollToBottom() { chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' }); }
-        function formatAIResponse(text) { return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-950 font-bold">$1</strong>').replace(/\n/g, '<br/>'); }
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        }
 
-        async function handleChatSubmit(e) {
+        function insertPrompt(text) {
+            userInput.value = text;
+            userInput.style.height = userInput.scrollHeight + 'px';
+            userInput.focus();
+            sendBtn.disabled = false;
+        }
+
+        function startNewChat() {
+            welcomeScreen.style.display = 'flex';
+            document.querySelectorAll('.chat-bubble').forEach(b => b.remove());
+            if(window.innerWidth < 768) toggleSidebar();
+        }
+
+        function scrollToBottom() {
+            chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+        }
+
+        function formatAIResponse(text) {
+            return text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-brand-950 font-bold">$1</strong>');
+        }
+
+        function handleChatSubmit(e) {
             e.preventDefault();
             const text = userInput.value.trim();
             if (!text) return;
@@ -129,81 +192,83 @@
             welcomeScreen.style.display = 'none';
             addUserMessage(text);
             
-            userInput.value = ''; userInput.style.height = 'auto'; sendBtn.disabled = true;
+            userInput.value = '';
+            userInput.style.height = 'auto';
+            sendBtn.disabled = true;
 
-            const msgId = 'msg-' + Date.now();
-            addEmptyAIMessage(msgId);
+            const typingId = showTypingIndicator();
             scrollToBottom();
 
-            try {
-                // Call Vercel Backend API
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ question: text })
-                });
-
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder("utf-8");
-                let fullText = "";
-                
-                const textContainer = document.getElementById(msgId + '-text');
-                const refContainer = document.getElementById(msgId + '-ref');
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-                    
-                    const chunk = decoder.decode(value, { stream: true });
-                    const lines = chunk.split('\n');
-                    
-                    for (const line of lines) {
-                        if (line.startsWith('data: ')) {
-                            const dataStr = line.replace('data: ', '');
-                            if (dataStr === '[DONE]') {
-                                sendBtn.disabled = false;
-                                break;
-                            }
-                            try {
-                                const data = JSON.parse(dataStr);
-                                if (data.type === 'reference') {
-                                    refContainer.innerText = data.text;
-                                } else if (data.type === 'chunk') {
-                                    fullText += data.text;
-                                    textContainer.innerHTML = formatAIResponse(fullText);
-                                    scrollToBottom();
-                                }
-                            } catch(e) { }
-                        }
-                    }
-                }
-            } catch (error) {
-                document.getElementById(msgId + '-text').innerText = "দুঃখিত, সংযোগে সমস্যা হয়েছে।";
+            setTimeout(() => {
+                document.getElementById(typingId).remove();
+                generateSmartResponse(text);
                 sendBtn.disabled = false;
+            }, 1800);
+        }
+
+        function generateSmartResponse(query) {
+            const lowerQuery = query.toLowerCase();
+            let aiResponseText = "";
+            let referenceText = "";
+
+            // Smart Keyword Matching Logic
+            if (lowerQuery.includes('বিয়ে') || lowerQuery.includes('বিবাহ') || lowerQuery.includes('১৭') || lowerQuery.includes('বয়স')) {
+                aiResponseText = "আপনার বয়সের ওপর ভিত্তি করে আইন বিশ্লেষণ:\n\n**বাল্যবিবাহ নিরোধ আইন, ২০১৭** অনুযায়ী বাংলাদেশে বিয়ের আইনগত বৈধ বয়স ছেলেদের ক্ষেত্রে ২১ বছর এবং মেয়েদের ক্ষেত্রে ১৮ বছর। যেহেতু আপনার বয়স ১৭ বছর, তাই আপনার জন্য এই মুহূর্তে বিবাহ বন্ধনে আবদ্ধ হওয়া আইনত দণ্ডনীয় অপরাধ।\n\nআইনের ধারা অনুযায়ী, কোনো অপ্রাপ্তবয়স্ক ব্যক্তি বাল্যবিবাহ করলে তাকে ১ মাসের কারাদণ্ড বা ৫০,০০০ টাকা জরিমানা অথবা উভয় দণ্ডে দণ্ডিত করা হতে পারে।";
+                referenceText = "বাল্যবিবাহ নিরোধ আইন, ২০১৭ (ধারা ৪)";
+            } 
+            else if (lowerQuery.includes('সাইবার') || lowerQuery.includes('ফেসবুক') || lowerQuery.includes('অনলাইন') || lowerQuery.includes('মানহানি') || lowerQuery.includes('ছবি')) {
+                aiResponseText = "**সাইবার নিরাপত্তা আইন, ২০২৩** অনুযায়ী কোনো ব্যক্তির সম্মতি ছাড়া তার ছবি বা তথ্য ইন্টারনেটে ছড়ানো বা মানহানিকর কিছু প্রকাশ করা একটি গুরুতর অপরাধ। \n\nএই ধরনের অপরাধের জন্য আপনি নিকটস্থ থানার সাইবার ক্রাইম ইউনিটে জিডি করতে পারেন অথবা বিটিআরসি (BTRC) বা পুলিশের ৯৯৯ এ কল করে অভিযোগ জানাতে পারেন। অপরাধ প্রমাণিত হলে ২ বছরের কারাদণ্ড বা ৩ লক্ষ টাকা পর্যন্ত জরিমানা হতে পারে।";
+                referenceText = "সাইবার নিরাপত্তা আইন, ২০২৩ (ধারা ২৪ ও ২৯)";
             }
+            else if (lowerQuery.includes('ভোক্তা') || lowerQuery.includes('ভেজাল') || lowerQuery.includes('দোকান') || lowerQuery.includes('নকল')) {
+                aiResponseText = "**ভোক্তা অধিকার সংরক্ষণ আইন, ২০০৯** অনুযায়ী কোনো বিক্রেতা যদি নকল বা ভেজাল পণ্য সরবরাহ করে, তবে আপনি জাতীয় ভোক্তা অধিকার সংরক্ষণ অধিদপ্তরে অভিযোগ করতে পারেন।\n\nআপনি চাইলে তাদের হটলাইন (১৬১২১) নাম্বারে কল করে প্রমাণসহ অভিযোগ জানাতে পারেন। অভিযোগ প্রমাণিত হলে বিক্রেতার জেল বা জরিমানা হতে পারে এবং জরিমানার ২৫% অর্থ অভিযোগকারীকে প্রদান করা হয়।";
+                referenceText = "ভোক্তা অধিকার সংরক্ষণ আইন, ২০০৯ (ধারা ৪১ ও ৪৪)";
+            }
+            else if (lowerQuery.includes('জমি') || lowerQuery.includes('নামজারি') || lowerQuery.includes('মিউটেশন') || lowerQuery.includes('দলিল')) {
+                aiResponseText = "জমি কেনার পর **নামজারি (Mutation)** করা অত্যন্ত জরুরি। নামজারি হলো সরকারি রেকর্ড রুমে পূর্বের মালিকের নাম বাদ দিয়ে নতুন মালিক হিসেবে আপনার নাম অন্তর্ভুক্ত করা।\n\nনামজারি না করলে জমির ওপর আপনার আইনগত মালিকানা সরকারিভাবে স্বীকৃত হবে না এবং পরবর্তীতে জমি বিক্রি বা ব্যাংক লোন নেওয়ার ক্ষেত্রে সমস্যার সম্মুখীন হতে হবে। বর্তমানে e-namjari ওয়েবসাইটের মাধ্যমে অনলাইনে আবেদন করা যায়।";
+                referenceText = "রাষ্ট্রীয় অধিগ্রহণ ও প্রজাস্বত্ব আইন, ১৯৫০ (ধারা ১৪৩)";
+            }
+            else {
+                aiResponseText = "আপনার প্রশ্নটি অত্যন্ত গুরুত্বপূর্ণ। আমাদের সিস্টেমে এই মুহূর্তে এই নির্দিষ্ট আইনি বিষয়টি প্রসেস করা হচ্ছে। \n\nএটি একটি জটিল লিগ্যাল ইস্যু হতে পারে। **AainKanun AI** সাধারণ ধারণার জন্য তৈরি, তবে কোনো চূড়ান্ত পদক্ষেপ নেওয়ার আগে অনুগ্রহ করে একজন পেশাদার আইনজীবীর (Lawyer) সাথে পরামর্শ করুন।";
+                referenceText = "General Advisory Warning";
+            }
+
+            addAIMessage(aiResponseText, referenceText);
         }
 
         function addUserMessage(text) {
-            const html = `<div class="chat-bubble flex justify-end w-full animate-fade-in mb-4"><div class="bg-gray-100 text-gray-800 px-5 py-3 rounded-2xl rounded-tr-sm max-w-[85%] md:max-w-[75%] shadow-sm">${text}</div></div>`;
+            const html = `<div class="chat-bubble flex justify-end w-full animate-fade-in mb-4">
+                <div class="bg-gray-100 text-gray-800 px-5 py-3 rounded-2xl rounded-tr-sm max-w-[85%] md:max-w-[75%] shadow-sm">${text}</div>
+            </div>`;
             chatMessages.insertAdjacentHTML('beforeend', html);
         }
 
-        function addEmptyAIMessage(id) {
-            const html = `
-                <div class="chat-bubble flex gap-3 md:gap-4 w-full animate-fade-in mb-6">
-                    <div class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100 mt-1"><i data-lucide="scale" class="w-4 h-4 text-brand-600"></i></div>
-                    <div class="flex-1 space-y-3">
-                        <div id="${id}-text" class="text-gray-800 leading-relaxed pt-1 min-h-[24px]">
-                            <div class="typing-indicator flex items-center mt-2"><span></span><span></span><span></span></div>
-                        </div>
-                        <div class="mt-3 bg-brand-50 border-l-4 border-brand-600 p-3 rounded-r-lg inline-block w-full md:w-auto pr-8">
-                            <div class="flex items-center gap-2 text-xs font-semibold text-brand-900 uppercase tracking-wider mb-1"><i data-lucide="bookmark" class="w-3 h-3"></i> লিগ্যাল রেফারেন্স</div>
-                            <div id="${id}-ref" class="text-sm font-medium text-gray-700">খোঁজা হচ্ছে...</div>
-                        </div>
-                    </div>
-                </div>`;
+        function showTypingIndicator() {
+            const id = 'typing-' + Date.now();
+            const html = `<div id="${id}" class="chat-bubble flex gap-4 w-full animate-fade-in mb-2">
+                <div class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100"><i data-lucide="scale" class="w-4 h-4 text-brand-600"></i></div>
+                <div class="flex-1 pt-1"><div class="typing-indicator flex items-center mt-2"><span></span><span></span><span></span></div></div>
+            </div>`;
             chatMessages.insertAdjacentHTML('beforeend', html);
             lucide.createIcons();
+            return id;
+        }
+
+        function addAIMessage(text, reference) {
+            const formattedText = formatAIResponse(text.replace(/\n/g, '<br/>'));
+            const html = `<div class="chat-bubble flex gap-3 md:gap-4 w-full animate-fade-in mb-6">
+                <div class="w-8 h-8 rounded-full bg-brand-50 flex items-center justify-center shrink-0 border border-brand-100 mt-1"><i data-lucide="scale" class="w-4 h-4 text-brand-600"></i></div>
+                <div class="flex-1 space-y-3">
+                    <div class="text-gray-800 leading-relaxed pt-1">${formattedText}</div>
+                    <div class="mt-3 bg-brand-50 border-l-4 border-brand-600 p-3 rounded-r-lg inline-block w-full md:w-auto pr-8">
+                        <div class="flex items-center gap-2 text-xs font-semibold text-brand-900 uppercase tracking-wider mb-1"><i data-lucide="bookmark" class="w-3 h-3"></i> লিগ্যাল রেফারেন্স</div>
+                        <div class="text-sm font-medium text-gray-700">${reference}</div>
+                    </div>
+                </div>
+            </div>`;
+            chatMessages.insertAdjacentHTML('beforeend', html);
+            lucide.createIcons();
+            scrollToBottom();
         }
 
         userInput.addEventListener('input', function() { sendBtn.disabled = this.value.trim().length === 0; });
@@ -211,9 +276,9 @@
         function handleLogin(method) {
             const loginScreen = document.getElementById('login-screen');
             if(method === 'guest') {
-                document.getElementById('profile-initial').innerText = 'G'; document.getElementById('profile-name').innerText = 'Guest'; document.getElementById('profile-plan').innerText = 'Limited';
-            } else {
-                document.getElementById('profile-initial').innerText = 'S'; document.getElementById('profile-name').innerText = 'Shuvo'; document.getElementById('profile-plan').innerText = 'Free Plan';
+                document.getElementById('profile-initial').innerText = 'G';
+                document.getElementById('profile-name').innerText = 'Guest User';
+                document.getElementById('profile-plan').innerText = 'Limited Access';
             }
             loginScreen.style.opacity = '0';
             setTimeout(() => { loginScreen.style.display = 'none'; }, 500);
